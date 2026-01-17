@@ -16,8 +16,9 @@ body {
 
 .card{
     background: #fdfdfd;
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    box-shadow: 0 12px 35px rgba(108, 99, 255, 0.35);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -200,6 +201,10 @@ body.play-music .card {
 
 .nav button:hover {
   background: #ff85b5;
+}
+.slider-container {
+  width: min(380px, 100%);
+  margin: 0 auto;
 }
 .slider-container {
   width: min(380px, 100%);
