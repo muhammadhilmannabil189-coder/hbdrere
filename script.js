@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     body.classList.remove("play-music");
   });
 });
-let index = 0;
 
 let index = 0;
 let autoTimer = null;
