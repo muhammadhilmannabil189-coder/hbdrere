@@ -78,3 +78,67 @@ img.birthday {
 body.play-music {
     animation: fadeIn 2s ease-in-out;
 }
+
+/* 🎉 BALON NAIK */
+.balloons {
+  position: fixed;
+  bottom: -150px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-around;
+  z-index: 0;
+}
+
+.balloon {
+  width: 60px;
+  height: 80px;
+  border-radius: 50%;
+  animation: floatUp 8s linear infinite;
+  opacity: 0.8;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: 2px;
+  height: 30px;
+  background: #aaa;
+}
+
+.balloon.pink { background: #ff5fa2; }
+.balloon.purple { background: #6c63ff; }
+.balloon.yellow { background: #ffd166; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-120vh); }
+}
+
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  background: red;
+  animation: fall 4s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+body.play-music .card {
+  animation: pump 0.8s ease-in-out infinite;
+}
+
+@keyframes pump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
