@@ -2,211 +2,143 @@
     transition: all 0.2s ease-in-out;
 }
 
-body {
-  background: #6c63ff;
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  color: #fff;
-  padding: 16px;
-}
+* { box-sizing: border-box; }
 
+body{
+  background:#6c63ff;
+  margin:0;
+  min-height:100vh;
+  font-family:"Poppins", sans-serif;
+  color:#fff;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
 
 .card{
-    background: #fdfdfd;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 4px;
-    box-shadow: 0 12px 35px rgba(108, 99, 255, 0.35);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 16px;
-    overflow: hidden;
-}
-img.birthday {
-  width: 100%;
-  max-height: 320px;
-  object-fit: cover;
-  border-radius: 14px;
-} 
+  width:min(980px, 100%);
+  background:#fdfdfd;
+  color:#333;
+  border-radius:16px;
+  box-shadow:0 12px 30px rgba(0,0,0,.22);
+  overflow:hidden;
 
-@media (min-width: 900px) {
-  .card {
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    padding: 22px;
+  display:flex;
+  flex-direction:column;
+}
+
+.media{
+  width:100%;
+  background:#fff;
+  padding:12px;
+}
+
+img.birthday{
+  width:100%;
+  height:auto;
+  max-height:320px;
+  object-fit:cover;
+  border-radius:14px;
+  display:block;
+}
+
+.text{
+  padding:16px;
+  line-height:1.55;
+  font-size:16px;
+}
+
+.text h1{
+  font-family:"Pacifico", cursive;
+  font-weight:400;
+  color:#ff5fa2;
+  margin:0 0 10px 0;
+  font-size:clamp(26px, 4.5vw, 44px);
+}
+
+.text p{
+  margin:10px 0;
+  word-wrap:break-word;
+}
+
+.muted{
+  opacity:.75;
+  margin-top:12px;
+}
+
+/* ===== DESKTOP/TABLET LEBAR: gambar kiri, teks kanan ===== */
+@media (min-width: 900px){
+  .card{
+    flex-direction:row;
+    align-items:stretch;
   }
-
-  img.birthday {
-    width: 45%;
-    max-height: 420px;
-  }
-
-  .text {
-    width: 55%;
-  }
+  .media{ width:45%; padding:18px; }
+  img.birthday{ max-height:520px; }
+  .text{ width:55%; padding:22px; font-size:16.5px; }
 }
 
-.text {
-  padding: 0;
-  color: #333;
-  line-height: 1.5;
-  font-size: 16px;
+/* ===== SLIDER ===== */
+.slider{
+  width:min(980px, 100%);
+  text-align:center;
 }
 
-.text h1 {
-  font-family: "Pacifico", cursive;
-  color: #ff5fa2;
-  margin: 0 0 10px 0;
-  font-size: clamp(28px, 3vw, 44px);
+.slider h2{
+  font-family:"Pacifico", cursive;
+  color:#ffb3d6;
+  margin:6px 0 12px;
+  font-weight:400;
+  font-size:clamp(18px, 4vw, 28px);
 }
 
-.muted {
-    opacity: 0.8;
+.slider-container{
+  width:min(420px, 100%);
+  margin:0 auto;
+  overflow:hidden;
+  border-radius:16px;
+  background:rgba(255,255,255,.12);
+  padding:10px;
 }
 
-.space {
-    height: 100px;
+.slides{
+  display:flex;
+  transition:transform .4s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.slides img{
+  width:100%;
+  flex-shrink:0;
+  border-radius:12px;
+  aspect-ratio: 4 / 5;   /* biar bentuk konsisten */
+  object-fit:cover;
+  display:block;
 }
 
-body.play-music {
-    animation: fadeIn 2s ease-in-out;
+.nav{
+  margin-top:10px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
 }
 
-/* 🎉 BALON NAIK */
-.balloons {
-  position: fixed;
-  bottom: -150px;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-  display: flex;
-  justify-content: space-around;
-  z-index: 0;
+.nav button{
+  background:#ff5fa2;
+  border:none;
+  color:#fff;
+  font-size:1.6rem;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  cursor:pointer;
 }
 
-.balloon {
-  width: 60px;
-  height: 80px;
-  border-radius: 50%;
-  animation: floatUp 8s linear infinite;
-  opacity: 0.8;
+.nav button:active{
+  transform:scale(.95);
 }
 
-.balloon::after {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  width: 2px;
-  height: 30px;
-  background: #aaa;
-}
-
-.balloon.pink { background: #ff5fa2; }
-.balloon.purple { background: #6c63ff; }
-.balloon.yellow { background: #ffd166; }
-
-@keyframes floatUp {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-120vh); }
-}
-
-.confetti {
-  position: fixed;
-  top: -10px;
-  width: 8px;
-  height: 14px;
-  background: red;
-  animation: fall 4s linear infinite;
-  opacity: 0.9;
-}
-
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0); }
-  100% { transform: translateY(110vh) rotate(360deg); }
-}
-
-body.play-music .card {
-  animation: pump 0.8s ease-in-out infinite;
-}
-
-@keyframes pump {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-.text h1 {
-  font-family: "Pacifico", cursive;
-  font-weight: 400;
-}
-
-.slider {
-  margin-top: 2em;
-  text-align: center;
-}
-
-.slider h2 {
-  font-family: "Pacifico", cursive;
-  color: #ff5fa2;
-  margin-bottom: 1em;
-}
-
-.slider-container {
-  width: 100%;
-  max-width: 320px;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 16px;
-}
-
-.slides {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-}
-
-.slides img {
-  width: 100%;
-  flex-shrink: 0;
-  border-radius: 16px;
-}
-
-.nav {
-  margin-top: 10px;
-}
-
-.nav button {
-  background: #ff5fa2;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  padding: 6px 14px;
-  border-radius: 50%;
-  margin: 0 6px;
-  cursor: pointer;
-}
-
-.nav button:hover {
-  background: #ff85b5;
-}
-.slider-container {
-  width: min(380px, 100%);
-  margin: 0 auto;
-}
-.slider-container {
-  width: min(380px, 100%);
-  margin: 0 auto;
+/* ===== AUDIO biar rapi ===== */
+audio{
+  width:min(980px, 100%);
 }
