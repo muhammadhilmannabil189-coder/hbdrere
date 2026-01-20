@@ -1,18 +1,14 @@
  document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bg-music");
+  const btn = document.getElementById("start-music")
   const body = document.body;
 
-  if (!music) return;
+  if (!music || !btn) return;
 
-
-  music.play().then(() => {
+ btn.addEventListener("click", () => {
+    music.play();
     body.classList.add("play-music");
-  }).catch(() => {
-
-    document.addEventListener("click", () => {
-      music.play();
-      body.classList.add("play-music");
-    }, { once: true });
+    btn.style.display = "none"; // tombol hilang setelah play
   });
 });
 
