@@ -1,9 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const audio = document.querySelector("audio");
-  const body = document.body;
-
-  if (!audio) return;
-
  document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bg-music");
   const body = document.body;
