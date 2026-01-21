@@ -158,3 +158,94 @@ audio{
   z-index: 9999;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
+
+.fw {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0.95;
+  animation: fw-pop 700ms ease-out forwards;
+}
+
+@keyframes fw-pop {
+  0%   { transform: translate(0,0) scale(0.6); opacity: 0.9; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(1.2); opacity: 0; }
+}
+/* 💌 secret envelope with pin */
+.secret-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin: 18px 0 28px;
+}
+
+.secret-envelope{
+  background:#fff;
+  color:#333;
+  padding:10px 16px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
+  transition: transform .2s ease;
+}
+
+.secret-envelope:hover{
+  transform: scale(1.05);
+}
+
+.secret-icon{
+  font-size:20px;
+}
+
+.secret-lock{
+  margin-left:6px;
+}
+
+.secret-text{
+  font-size:13px;
+  margin:0;
+}
+
+.secret-letter{
+  display:none;
+  margin-top:14px;
+  max-width:420px;
+  background:#fff;
+  color:#333;
+  padding:16px;
+  border-radius:16px;
+  box-shadow:0 12px 26px rgba(0,0,0,.2);
+  animation: fadeUp .4s ease;
+}
+
+.secret-letter h4{
+  margin:0 0 8px;
+  font-family:"Pacifico", cursive;
+  color:#ff5fa2;
+  font-weight:400;
+}
+
+.secret-letter p{
+  font-size:14px;
+  line-height:1.5;
+  margin:0;
+}
+
+.secret-letter .sign{
+  margin-top:10px;
+  font-weight:700;
+  color:#6c63ff;
+}
+
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(10px); }
+  to{ opacity:1; transform: translateY(0); }
+}
