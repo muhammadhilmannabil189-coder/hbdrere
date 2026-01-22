@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
       letter.style.display = "block";
       env.style.display = "none";
     } else {
-      hint.textContent = "pin salah 😢 coba lagi ya";
+      hint.textContent = "pin salah ni coba lagi ya....";
       input.focus();
       input.select();
     }
