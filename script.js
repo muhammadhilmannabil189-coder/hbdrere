@@ -111,22 +111,55 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 })();
-// 🔐 secret envelope with PIN
 document.addEventListener("DOMContentLoaded", () => {
   const env = document.getElementById("secretEnv");
   const letter = document.getElementById("secretLetter");
 
-  if (!env || !letter) return;
+  const modal = document.getElementById("pinModal");
+  const backdrop = document.getElementById("pinBackdrop");
+  const input = document.getElementById("pinInput");
+  const ok = document.getElementById("pinOk");
+  const cancel = document.getElementById("pinCancel");
+  const hint = document.getElementById("pinHint");
 
-  env.addEventListener("click", () => {
-    const pin = prompt("masukin PIN dulu yaa 💌");
+  const PIN = "280625"; // ganti pin di sini
 
-    
-    if (pin === "280625") {
+  function openModal(){
+    modal.classList.add("show");
+    modal.setAttribute("aria-hidden", "false");
+    hint.textContent = "";
+    input.value = "";
+    setTimeout(() => input.focus(), 0);
+  }
+
+  function closeModal(){
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
+  function checkPin(){
+    if (input.value === PIN){
+      closeModal();
       letter.style.display = "block";
       env.style.display = "none";
-    } else if (pin !== null) {
-      alert("PIN-nya salah 😢");
+    } else {
+      hint.textContent = "pin salah 😢 coba lagi ya";
+      input.focus();
+      input.select();
     }
+  }
+
+  if (env && letter){
+    env.addEventListener("click", openModal);
+  }
+
+  ok?.addEventListener("click", checkPin);
+  cancel?.addEventListener("click", closeModal);
+  backdrop?.addEventListener("click", closeModal);
+
+  input?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") checkPin();
+    if (e.key === "Escape") closeModal();
   });
 });
+

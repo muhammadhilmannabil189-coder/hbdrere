@@ -96,6 +96,24 @@
   <audio id="bg-music" loop>
     <source src="hbd.mp3" type="audio/mpeg">
   </audio>
+<!-- 🔐 pin modal -->
+<div class="pin-modal" id="pinModal" aria-hidden="true">
+  <div class="pin-backdrop" id="pinBackdrop"></div>
+
+  <div class="pin-card" role="dialog" aria-modal="true" aria-labelledby="pinTitle">
+    <h3 id="pinTitle">masukin pin dulu ya sayanggggg💌</h3>
+    <p class="pin-sub">buat buka surat rahasianyaaaa xixixi🤍</p>
+
+    <input id="pinInput" class="pin-input" type="password" inputmode="numeric" placeholder="contoh: 1402" />
+
+    <div class="pin-actions">
+      <button class="pin-btn ghost" id="pinCancel">batal</button>
+      <button class="pin-btn" id="pinOk">buka</button>
+    </div>
+
+    <p class="pin-hint" id="pinHint"></p>
+  </div>
+</div>
 
   <script src="script.js"></script>
 </body>
