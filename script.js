@@ -162,3 +162,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeModal();
   });
 });
+// 📸 reveal memories photos one by one
+(() => {
+  const photos = document.querySelectorAll(".mem-photo");
+  if (!photos.length) return;
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  photos.forEach(p => observer.observe(p));
+})();
