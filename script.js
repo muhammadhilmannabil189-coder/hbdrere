@@ -12,39 +12,6 @@
   });
 });
 
-let index = 0;
-let autoTimer = null;
-
-function showSlide() {
-  const slides = document.querySelector(".slides");
-  if (!slides) return;
-  slides.style.transform = `translateX(-${index * 100}%)`;
-}
-
-function nextSlide() {
-  const total = document.querySelectorAll(".slides img").length;
-  if (total === 0) return;
-  index = (index + 1) % total;
-  showSlide();
-}
-
-function prevSlide() {
-  const total = document.querySelectorAll(".slides img").length;
-  if (total === 0) return;
-  index = (index - 1 + total) % total;
-  showSlide();
-}
-
-function startAutoSlide() {
-  stopAutoSlide();
-  autoTimer = setInterval(nextSlide, 3000); // ganti 3000 jadi 2000 kalau mau lebih cepet
-}
-
-function stopAutoSlide() {
-  if (autoTimer) clearInterval(autoTimer);
-  autoTimer = null;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   showSlide();
   startAutoSlide();
@@ -168,12 +135,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!track) return;
 
   const slides = track.children;
-  let index = 0;
+  let idx = 0;
 
   function nextSlide(){
-    index = (index + 1) % slides.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
+    idx = (idx + 1) % slides.length;
+    track.style.transform = `translateX(-${idx * 100}%)`;
   }
 
-  setInterval(nextSlide, 3000); // ganti 3000 = 3 detik
+  setInterval(nextSlide, 3000);
 })();

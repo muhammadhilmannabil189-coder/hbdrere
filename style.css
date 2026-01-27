@@ -5,7 +5,7 @@
 * { box-sizing: border-box; }
 
 body{
-  background:#6c63ff;
+  background:#ff63ff;
   margin:0;
   min-height:100vh;
   font-family:"Poppins", sans-serif;
@@ -149,14 +149,15 @@ audio{
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: #ff5fa2;
-  color: white;
+  background: #ffffff;
+  color: rgb(2, 2, 2);
   border: none;
   padding: 12px 20px;
   border-radius: 999px;
   font-size: 14px;
   z-index: 9999;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  font-family:"Poppins", sans-serif;
 }
 
 .fw {
@@ -365,16 +366,10 @@ audio{
 
 .memories-track img{
   width: 100%;
-  max-height: 420px;
-  object-fit: contain;   /* ⬅️ FOTO NGGAK KEPOTONG */
   flex-shrink: 0;
+  max-height: 420px;
+  object-fit: cover;   /* foto utuh */
   background: #fff;
   border-radius: 18px;
-}
-
-/* desktop */
-@media (min-width: 768px){
-  .memories-track img{
-    max-height: 480px;
-  }
+  box-shadow: o 0 0 4px rgba(0,0,0,0.25)  ;
 }
