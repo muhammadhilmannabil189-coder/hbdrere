@@ -163,3 +163,89 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function popConfetti(count = 40) {
+  const colors = ["#ff5fa2", "#6c63ff", "#ffd166", "#ffffff"];
+  for (let i = 0; i < count; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti-piece";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDuration = (3 + Math.random() * 2) + "s";
+    c.style.width = (6 + Math.random() * 6) + "px";
+    c.style.height = (10 + Math.random() * 10) + "px";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 6000);
+  }
+}
+wish.classList.add("show");
+hint.textContent = "yeayyy 🎉";
+popConfetti(60);
+
+// 🎤 blow-to-reveal "19" wish (mobile-friendly)
+(() => {
+  const wish = document.getElementById("wish");
+  const hint = document.querySelector(".blow-hint");
+  if (!wish || !hint) return;
+
+  let started = false;
+  let shown = false;
+
+  async function startMic() {
+    if (started) return;
+    started = true;
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioCtx();
+
+      // iOS kadang butuh resume setelah gesture
+      if (ctx.state === "suspended") await ctx.resume();
+
+      const source = ctx.createMediaStreamSource(stream);
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 2048;
+      source.connect(analyser);
+
+      const data = new Uint8Array(analyser.fftSize);
+
+      hint.textContent = "tiup yang kenceng dikit ya 💨";
+
+      function loop() {
+        if (shown) return;
+
+        analyser.getByteTimeDomainData(data);
+
+        // hitung “volume” sederhana (RMS)
+        let sum = 0;
+        for (let i = 0; i < data.length; i++) {
+          const v = (data[i] - 128) / 128;
+          sum += v * v;
+        }
+        const rms = Math.sqrt(sum / data.length);
+
+        // threshold (bisa kamu ubah kalau terlalu sensitif)
+        if (rms > 0.12) {
+          shown = true;
+          wish.classList.add("show");
+          hint.textContent = "yeayyy 🎉";
+
+          // stop mic biar hemat
+          stream.getTracks().forEach(t => t.stop());
+          return;
+        }
+
+        requestAnimationFrame(loop);
+      }
+
+      loop();
+    } catch (e) {
+      hint.textContent = "izin mic belum dikasih 😿 (tap buat coba lagi)";
+      started = false;
+    }
+  }
+
+  // trigger aman: tap sekali (biar iOS/Chrome ngizinin)
+  document.addEventListener("click", startMic, { once: true });
+  document.addEventListener("touchstart", startMic, { once: true });
+})();
