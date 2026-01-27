@@ -162,3 +162,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeModal();
   });
 });
+// 📸 memories auto slide
+(() => {
+  const track = document.querySelector(".memories-track");
+  if (!track) return;
+
+  const slides = track.children;
+  let index = 0;
+
+  function nextSlide(){
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  setInterval(nextSlide, 3000); // ganti 3000 = 3 detik
+})();

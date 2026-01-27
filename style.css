@@ -339,3 +339,42 @@ audio{
   color: #ff3b7f;
   min-height: 18px;
 }
+/* 📸 memories auto slider */
+.memories{
+  width: min(980px, 100%);
+  margin: 28px auto;
+  text-align: center;
+}
+
+.memories-title{
+  font-family: "Pacifico", cursive;
+  color: #ff5fa2;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.memories-slider{
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.memories-track{
+  display: flex;
+  transition: transform .6s ease;
+}
+
+.memories-track img{
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;   /* ⬅️ FOTO NGGAK KEPOTONG */
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 18px;
+}
+
+/* desktop */
+@media (min-width: 768px){
+  .memories-track img{
+    max-height: 480px;
+  }
+}
