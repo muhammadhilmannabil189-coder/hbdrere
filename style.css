@@ -391,7 +391,7 @@ audio{
   font-weight: 600;
 }
 
-.wish.show{ display:block; }
+.wish.show{ display:block !important; }
 
 @keyframes wishPop{
   from{ transform: translateY(10px) scale(.98); opacity: 0; }

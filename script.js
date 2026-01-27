@@ -178,6 +178,7 @@ function popConfetti(count = 40) {
   }
 }
 wish.classList.add("show");
+wish.style.display="block";
 hint.textContent = "yeayyy 🎉";
 popConfetti(60);
 
