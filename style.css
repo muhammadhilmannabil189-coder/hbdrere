@@ -373,3 +373,218 @@ audio{
   border-radius: 18px;
   box-shadow: o 0 0 4px rgba(0,0,0,0.25)  ;
 }
+/* 🎂 animated cake (replace img) */
+.birthday-cake{
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.cake-stage{
+  width: min(420px, 92vw);
+  height: 320px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.plate{
+  width: 220px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.85);
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  transform: translateY(14px);
+  opacity: 0;
+  animation: popIn .45s ease forwards;
+}
+
+@keyframes popIn{
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.cake{
+  position: relative;
+  width: 240px;
+  height: 170px;
+  transform: translateY(-10px);
+}
+
+.layer{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-140px);
+  opacity: 0;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #9b6a53 0%, #7f5544 100%);
+  box-shadow: 0 18px 36px rgba(0,0,0,.16);
+}
+
+.layer::before{
+  content:"";
+  position:absolute;
+  left: 10px; right: 10px;
+  top: 18px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.15);
+}
+
+.layer-1{
+  bottom: 22px;
+  width: 220px;
+  height: 70px;
+  animation: drop1 .7s .25s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.layer-2{
+  bottom: 86px;
+  width: 170px;
+  height: 55px;
+  animation: drop2 .7s .55s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes drop1{
+  to{ transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+@keyframes drop2{
+  to{ transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.icing{
+  position:absolute;
+  left: 50%;
+  bottom: 126px;
+  transform: translateX(-50%) translateY(-140px);
+  width: 176px;
+  height: 22px;
+  border-radius: 14px;
+  background: #fff6fb;
+  opacity: 0;
+  filter: drop-shadow(0 12px 18px rgba(0,0,0,.10));
+  animation: icingIn .6s .95s ease forwards;
+}
+
+.icing::before,
+.icing::after{
+  content:"";
+  position:absolute;
+  top: 16px;
+  width: 24px;
+  height: 30px;
+  background: inherit;
+  border-radius: 999px;
+}
+
+.icing::before{ left: 24px; height: 34px; }
+.icing::after{ right: 22px; height: 28px; }
+
+@keyframes icingIn{
+  to{ transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.candle{
+  position:absolute;
+  left: 50%;
+  bottom: 140px;
+  transform: translateX(-50%) translateY(-120px);
+  width: 10px;
+  height: 44px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff, #ffd6e8);
+  opacity: 0;
+  animation: candleIn .55s 1.25s ease forwards;
+}
+
+@keyframes candleIn{
+  to{ transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.flame{
+  position:absolute;
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 18px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 40% 35%, #fff 0 25%, #ffd166 45%, #ff5fa2 78%);
+  filter: drop-shadow(0 0 10px rgba(255,209,102,.75));
+  animation: flicker .12s infinite alternate ease-in-out;
+  opacity: 0;
+}
+
+.candle{
+  overflow: visible;
+}
+
+.candle .flame{
+  animation-delay: 0s;
+}
+
+.candle{ /* nyalain flame setelah candle muncul */
+  --flameDelay: 1.55s;
+}
+
+.candle::after{
+  content:"";
+  position:absolute;
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 18px;
+  border-radius: 999px;
+  opacity: 0;
+  animation: flameOn .1s 1.55s forwards;
+}
+@keyframes flameOn{ to{ opacity: 1; } }
+
+.candle .flame{
+  animation-name: flicker;
+  animation-duration: .12s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+.candle .flame{
+  animation-play-state: running;
+}
+.candle .flame{
+  opacity: 0;
+  animation: flicker .12s infinite alternate ease-in-out, flameShow .01s 1.55s forwards;
+}
+@keyframes flameShow{ to{ opacity: 1; } }
+
+@keyframes flicker{
+  from{ transform: translateX(-50%) rotate(-3deg) scale(1); }
+  to{ transform: translateX(-50%) rotate(3deg) scale(1.06); }
+}
+
+.cake-text{
+  position:absolute;
+  bottom: 0px;
+  text-align:center;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: textIn .6s 1.55s ease forwards;
+}
+
+@keyframes textIn{
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.cake-text .hb{
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: rgba(0,0,0,.45);
+  font-size: 18px;
+}
+
+.cake-text .sub{
+  margin-top: 2px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: rgba(0,0,0,.35);
+  font-size: 13px;
+}
